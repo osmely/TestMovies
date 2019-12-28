@@ -134,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				FE6F5AF423B690BD00133217 /* Cells */,
-				FEFF395123B6AE9C003585BA /* MoviesCollectionViewDriver.swift */,
+				FEEA86D023B7408200D1024A /* Driver */,
 				FE6F5AE623B680BC00133217 /* HomeViewController.swift */,
 				FE6F5AE723B680BC00133217 /* HomeViewController.xib */,
 			);
@@ -169,6 +169,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		FEEA86D023B7408200D1024A /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				FEFF395123B6AE9C003585BA /* MoviesCollectionViewDriver.swift */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		FEEA86D123B740AB00D1024A /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				FEFF396723B6C866003585BA /* MoviesRequests.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		FEFF395023B6AC8C003585BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +208,7 @@
 			children = (
 				FEFF396323B6C0FB003585BA /* NetworkRequestsManager+rx.swift */,
 				FEFF396523B6C76B003585BA /* NetworkingConstants.swift */,
-				FEFF396723B6C866003585BA /* MoviesRequests.swift */,
+				FEEA86D123B740AB00D1024A /* Requests */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

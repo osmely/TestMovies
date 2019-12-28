@@ -43,7 +43,7 @@ class MovieModel : Codable {
     var vote_average        :Float?
     var overview            :String?
     var release_date        :String?
-    
+    var date                :Date?
     
     required init(from decoder: Decoder) throws {
         let container   = try decoder.container(keyedBy: CodingKeys.self)
@@ -62,6 +62,11 @@ class MovieModel : Codable {
         vote_average        = try? container.decodeIfPresent(Float.self, forKey: .vote_average)
         overview            = try? container.decodeIfPresent(String.self, forKey: .overview)
         release_date        = try? container.decodeIfPresent(String.self, forKey: .release_date)
+        
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd"
+        date = formatter.date(from: release_date ?? "")
     }
     
     func posterPath(width:Int = 300) -> String? {

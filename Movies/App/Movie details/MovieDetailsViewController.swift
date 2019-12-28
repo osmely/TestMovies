@@ -18,6 +18,7 @@ class MovieDetailsViewController: ViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var movie:MovieModel!
+    let formatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +68,7 @@ class MovieDetailsViewController: ViewController {
         formattedString
             .boldLine(movie.title ?? movie.original_title, size: 36)
         
-        var genres = ""
+        var genres = "-"
         if let details = model as? MovieDetailsModel {
             formattedString
                 .normalLine("")
@@ -76,13 +77,20 @@ class MovieDetailsViewController: ViewController {
             
             genres = details.genres?
                 .map({$0.name})
-                .joined(separator: ", ") ?? ""
+                .joined(separator: ", ") ?? "-"
+        }
+        
+        var release_date = "-"
+        if let date = movie.date {
+            formatter.locale = Locale(identifier: "es")
+            formatter.dateFormat = "d-MMM-yyyy"
+            release_date = formatter.string(from: date)
         }
         
         formattedString
             .normalLine("")
             .boldLine("Fecha de estreno:")
-            .normalLine(model.release_date)
+            .normalLine(release_date)
             
             .normalLine("")
             .boldLine("Calificatión:")

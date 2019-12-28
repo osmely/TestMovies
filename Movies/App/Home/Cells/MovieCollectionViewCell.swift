@@ -17,6 +17,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieRateLabel: UILabel!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
+    let formatter = DateFormatter()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.activity.hidesWhenStopped = true
@@ -34,8 +36,16 @@ class MovieCollectionViewCell: UICollectionViewCell {
         }
         
         self.movieNameLabel.text = movie.title ?? movie.original_title
-        self.movieDateLabel.text = movie.release_date
         self.movieRateLabel.text = "\(movie.vote_average ?? 0)"
+        
+        if let date = movie.date {
+            formatter.locale = Locale(identifier: "es")
+            formatter.dateFormat = "d-MMM-yyyy"
+            self.movieDateLabel.text = formatter.string(from: date)
+        }else{
+            self.movieDateLabel.text = ""
+        }
+        
     }
 
 }

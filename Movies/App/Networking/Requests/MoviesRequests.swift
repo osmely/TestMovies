@@ -9,6 +9,7 @@
 import Foundation
 import EasyNetRequest
 
+// MARK: - GetMoviesRequest -
 struct GetMoviesRequest : EasyNetRequest {
     typealias EasyNetResponseType = GetMoviewResult
     
@@ -30,7 +31,7 @@ struct GetMoviesRequest : EasyNetRequest {
     var validators: [EasyNetResponseValidator]? { [] }
 }
 
-
+// MARK: - GetMovieDetailsRequest -
 struct GetMovieDetailsRequest : EasyNetRequest {
     typealias EasyNetResponseType = MovieDetailsModel
     

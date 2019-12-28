@@ -10,9 +10,6 @@ target 'Movies' do
   # Pods for Movies
 
   pod 'YYWebImage'
-  pod 'SwiftyJSON'
-  pod 'Alamofire'
-  pod 'ObjectMapper'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'EasyNetRequest'
