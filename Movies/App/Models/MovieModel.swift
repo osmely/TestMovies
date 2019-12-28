@@ -31,7 +31,7 @@ class MovieModel : Codable {
     
     var id                  :Int!
     var popularity          :Float?
-    var vote_count          :Int?
+    var vote_count          :Float?
     var video               :Bool?
     var poster_path         :String?
     var adult               :Bool?
@@ -40,7 +40,7 @@ class MovieModel : Codable {
     var original_title      :String?
     var genre_ids           :[Int]?
     var title               :String?
-    var vote_average        :Int?
+    var vote_average        :Float?
     var overview            :String?
     var release_date        :String?
     
@@ -50,7 +50,7 @@ class MovieModel : Codable {
         
         id = try container.decode(Int.self, forKey: .id)
         popularity = try container.decodeIfPresent(Float.self, forKey: .popularity)
-        vote_count = try container.decodeIfPresent(Int.self, forKey: .vote_count)
+        vote_count = try container.decodeIfPresent(Float.self, forKey: .vote_count)
         video = try container.decodeIfPresent(Bool.self, forKey: .video)
         poster_path = try container.decodeIfPresent(String.self, forKey: .poster_path)
         adult = try container.decodeIfPresent(Bool.self, forKey: .adult)
@@ -59,12 +59,21 @@ class MovieModel : Codable {
         original_title = try container.decodeIfPresent(String.self, forKey: .original_title)
         genre_ids = try container.decodeIfPresent([Int].self, forKey: .genre_ids)
         title = try container.decodeIfPresent(String.self, forKey: .title)
-        vote_average = try container.decodeIfPresent(Int.self, forKey: .vote_average)
+        vote_average = try container.decodeIfPresent(Float.self, forKey: .vote_average)
         overview = try container.decodeIfPresent(String.self, forKey: .overview)
         release_date = try container.decodeIfPresent(String.self, forKey: .release_date)
         
     }
     
+    func posterPath(width:Int = 300) -> String? {
+        guard let poster_path = self.poster_path else {return nil}
+        return "https://image.tmdb.org/t/p/w\(width)/\(poster_path)"
+    }
+    
+    func backdropPath(width:Int = 300) -> String? {
+        guard let backdrop_path = self.backdrop_path else {return nil}
+        return "https://image.tmdb.org/t/p/w\(width)/\(backdrop_path)"
+    }
 }
 
 

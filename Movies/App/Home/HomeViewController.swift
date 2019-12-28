@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+
 
 class HomeViewController: ViewController {
     
@@ -14,6 +17,7 @@ class HomeViewController: ViewController {
     
     fileprivate lazy var driver:MoviesCollectionViewDriver = {
         let d = MoviesCollectionViewDriver(collectionView)
+        d.viewModel = ViewModel()
         d.delegate = self
         return d
     }()
@@ -37,6 +41,28 @@ extension HomeViewController : MoviesCollectionProtocol {
     func onMovieCellSelected() {
         let details = MovieDetailsViewController.instantiateFromNib()
         self.navigationController?.pushViewController(details, animated:true)
+    }
+    
+}
+
+// MARK: - ViewModel -
+extension HomeViewController {
+    
+    class ViewModel {
+        
+        let movies = BehaviorRelay<[MovieModel]>(value:[])
+        
+        func get(page: Int) {
+            GetMoviesRequest(page: page).execute { (result) in
+                do {
+                    let movies = try result.get()
+                    self.movies.accept(movies.results)
+                } catch {
+                    self.movies.accept([])
+                }
+            }
+        }
+        
     }
     
 }

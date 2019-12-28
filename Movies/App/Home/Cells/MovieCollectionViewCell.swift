@@ -14,6 +14,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var movieDateLabel: UILabel!
+    @IBOutlet weak var movieRateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,11 +23,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     func configureWith(movie: MovieModel) {
     
-        if let url = URL(string: movie.backdrop_path ?? "") {
+        if let url = URL(string: movie.posterPath() ?? "") {
             self.movieImageView.yy_setImage(with: url, options: .setImageWithFadeAnimation)
         } else {
             self.movieImageView.image = nil
         }
+        
+        self.movieNameLabel.text = movie.original_title
+        self.movieDateLabel.text = movie.release_date
+        self.movieRateLabel.text = "\(movie.vote_average ?? 0)"
     }
 
 }

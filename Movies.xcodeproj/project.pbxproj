@@ -118,12 +118,12 @@
 		FE6F5AEC23B68FD400133217 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FEFF395023B6AC8C003585BA /* Models */,
+				FEFF396223B6BF63003585BA /* Networking */,
 				FE6F5AEF23B6900300133217 /* Utils */,
 				FE6F5AEE23B68FFC00133217 /* Base */,
 				FEFF395723B6AF55003585BA /* Movie details */,
 				FE6F5AED23B68FEB00133217 /* Home */,
-				FEFF395023B6AC8C003585BA /* Models */,
-				FEFF396223B6BF63003585BA /* Networking */,
 			);
 			path = App;
 			sourceTree = "<group>";

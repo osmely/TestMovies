@@ -7,6 +7,6 @@
 //
 
 struct NetworkingConstants {
-    static let BASE_URL = "https://kanu.xanthops.com/api/v1"
+    static let BASE_URL = "https://api.themoviedb.org/3"
     static let API_KEY = "634b49e294bd1ff87914e7b9d014daed"
 }

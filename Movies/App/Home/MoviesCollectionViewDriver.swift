@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
+
 
 protocol MoviesCollectionProtocol : class {
     func onMovieCellSelected()
@@ -16,7 +19,14 @@ protocol MoviesCollectionProtocol : class {
 class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     let collectionView: UICollectionView
+    let disposeBag = DisposeBag()
     weak var delegate: MoviesCollectionProtocol?
+    
+    var viewModel:HomeViewController.ViewModel! {
+        didSet{
+            self.bind()
+        }
+    }
     
     init(_ collection: UICollectionView) {
         self.collectionView = collection
@@ -30,6 +40,16 @@ class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout,
         self.collectionView.dataSource = self
     }
     
+    func bind() {
+        
+        self.viewModel.movies.asObservable()
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (models) in
+                self.collectionView.reloadData()
+            }).disposed(by: disposeBag)
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -41,12 +61,12 @@ class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.viewModel.movies.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
-        
+        cell.configureWith(movie: self.viewModel.movies.value[indexPath.row])
         return cell
     }
     
@@ -54,9 +74,8 @@ class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout,
         self.delegate?.onMovieCellSelected()
     }
     
-    
     func reload(){
+        self.viewModel.get(page: 1)
         
-        self.collectionView.reloadData()
     }
 }
