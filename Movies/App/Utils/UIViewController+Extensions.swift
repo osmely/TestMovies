@@ -16,4 +16,13 @@ extension UIViewController {
         }
         return instantiateFromNib(self)
     }
+    
+    static func topViewController() -> UIViewController {
+        let w = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        var vc = (w?.rootViewController)!
+        while vc.presentedViewController != nil {
+            vc = vc.presentedViewController!
+        }
+        return vc
+    }
 }

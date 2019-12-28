@@ -22,7 +22,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     func configureWith(movie: MovieModel) {
     
-        if let url = URL(string: movie.picture ?? "") {
+        if let url = URL(string: movie.backdrop_path ?? "") {
             self.movieImageView.yy_setImage(with: url, options: .setImageWithFadeAnimation)
         } else {
             self.movieImageView.image = nil

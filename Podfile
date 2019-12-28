@@ -12,8 +12,9 @@ target 'Movies' do
   pod 'YYWebImage'
   pod 'SwiftyJSON'
   pod 'Alamofire'
-  pod 'PromiseKit'
   pod 'ObjectMapper'
-
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'EasyNetRequest'
   
 end

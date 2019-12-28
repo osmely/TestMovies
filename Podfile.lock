@@ -1,15 +1,13 @@
 PODS:
   - Alamofire (4.9.1)
+  - EasyNetRequest (0.0.4)
   - ObjectMapper (3.5.1)
-  - PromiseKit (6.12.0):
-    - PromiseKit/CorePromise (= 6.12.0)
-    - PromiseKit/Foundation (= 6.12.0)
-    - PromiseKit/UIKit (= 6.12.0)
-  - PromiseKit/CorePromise (6.12.0)
-  - PromiseKit/Foundation (6.12.0):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.12.0):
-    - PromiseKit/CorePromise
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
   - SwiftyJSON (5.0.0)
   - YYCache (1.0.4)
   - YYImage (1.0.4):
@@ -21,16 +19,21 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - EasyNetRequest
   - ObjectMapper
-  - PromiseKit
+  - RxCocoa
+  - RxSwift
   - SwiftyJSON
   - YYWebImage
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - EasyNetRequest
     - ObjectMapper
-    - PromiseKit
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SwiftyJSON
     - YYCache
     - YYImage
@@ -38,13 +41,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  EasyNetRequest: 9cdbc1b344bb0d4ece83ef16a94c828c38ff9777
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-  PromiseKit: c06835ba442ce5454ce3cdde470232804a6e4ff8
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 91e41e354c00c213d23cdadb281c8576d2c4a025
+PODFILE CHECKSUM: 63be7c4113b58d86c2a440920d613297442c4e39
 
 COCOAPODS: 1.8.4
