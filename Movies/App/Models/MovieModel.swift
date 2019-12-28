@@ -12,7 +12,7 @@ import Foundation
 
 class MovieModel : Codable {
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case id
         case popularity
         case vote_count
@@ -48,21 +48,20 @@ class MovieModel : Codable {
     required init(from decoder: Decoder) throws {
         let container   = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = try container.decode(Int.self, forKey: .id)
-        popularity = try container.decodeIfPresent(Float.self, forKey: .popularity)
-        vote_count = try container.decodeIfPresent(Float.self, forKey: .vote_count)
-        video = try container.decodeIfPresent(Bool.self, forKey: .video)
-        poster_path = try container.decodeIfPresent(String.self, forKey: .poster_path)
-        adult = try container.decodeIfPresent(Bool.self, forKey: .adult)
-        backdrop_path = try container.decodeIfPresent(String.self, forKey: .backdrop_path)
-        original_language = try container.decodeIfPresent(String.self, forKey: .original_language)
-        original_title = try container.decodeIfPresent(String.self, forKey: .original_title)
-        genre_ids = try container.decodeIfPresent([Int].self, forKey: .genre_ids)
-        title = try container.decodeIfPresent(String.self, forKey: .title)
-        vote_average = try container.decodeIfPresent(Float.self, forKey: .vote_average)
-        overview = try container.decodeIfPresent(String.self, forKey: .overview)
-        release_date = try container.decodeIfPresent(String.self, forKey: .release_date)
-        
+        id                  = try container.decode(Int.self, forKey: .id)
+        popularity          = try? container.decodeIfPresent(Float.self, forKey: .popularity)
+        vote_count          = try? container.decodeIfPresent(Float.self, forKey: .vote_count)
+        video               = try? container.decodeIfPresent(Bool.self, forKey: .video)
+        poster_path         = try? container.decodeIfPresent(String.self, forKey: .poster_path)
+        adult               = try? container.decodeIfPresent(Bool.self, forKey: .adult)
+        backdrop_path       = try? container.decodeIfPresent(String.self, forKey: .backdrop_path)
+        original_language   = try? container.decodeIfPresent(String.self, forKey: .original_language)
+        original_title      = try? container.decodeIfPresent(String.self, forKey: .original_title)
+        genre_ids           = try? container.decodeIfPresent([Int].self, forKey: .genre_ids)
+        title               = try? container.decodeIfPresent(String.self, forKey: .title)
+        vote_average        = try? container.decodeIfPresent(Float.self, forKey: .vote_average)
+        overview            = try? container.decodeIfPresent(String.self, forKey: .overview)
+        release_date        = try? container.decodeIfPresent(String.self, forKey: .release_date)
     }
     
     func posterPath(width:Int = 300) -> String? {
@@ -89,7 +88,7 @@ class GetMoviewResult : Codable {
     var page                :Int!
     var total_pages         :Int!
     var total_results       :Int!
-    var results             :[MovieModel]!
+    var results             :[MovieModel]?
     
     required init(from decoder: Decoder) throws {
         let container   = try decoder.container(keyedBy: CodingKeys.self)
@@ -97,8 +96,7 @@ class GetMoviewResult : Codable {
         page = try container.decode(Int.self, forKey: .page)
         total_pages = try container.decode(Int.self, forKey: .total_pages)
         total_results = try container.decode(Int.self, forKey: .total_results)
-        results = try container.decode([MovieModel].self, forKey: .results)
-    
+        results = try? container.decode([MovieModel].self, forKey: .results)
     }
 }
 

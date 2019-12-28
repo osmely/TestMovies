@@ -31,5 +31,23 @@ struct GetMoviesRequest : EasyNetRequest {
 }
 
 
+struct GetMovieDetailsRequest : EasyNetRequest {
+    typealias EasyNetResponseType = MovieDetailsModel
+    
+    let id:Int
+    
+    func log(data: String) {
+        Logger.log(message: data)
+    }
+    
+    var data: EasyNetRequestData {
+        let request = EasyNetRequestData(
+            path: NetworkingConstants.BASE_URL + "/movie/\(id)?api_key=\(NetworkingConstants.API_KEY)",
+            method: .GET
+        )
 
-
+        return request
+    }
+    
+    var validators: [EasyNetResponseValidator]? { [] }
+}

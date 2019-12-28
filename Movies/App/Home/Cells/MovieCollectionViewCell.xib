@@ -125,7 +125,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="249" height="319"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadowVisibles" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="activity" destination="F6d-BT-COW" id="FUK-09-zJy"/>
                 <outlet property="movieDateLabel" destination="M07-8x-XVl" id="IDv-9A-ffe"/>
                 <outlet property="movieImageView" destination="SMq-l6-3Kd" id="lPJ-Hc-hTX"/>
                 <outlet property="movieNameLabel" destination="1b4-tm-oX5" id="BLe-xk-7XL"/>

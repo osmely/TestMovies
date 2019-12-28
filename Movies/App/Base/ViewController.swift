@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
+    
+    var disposeBag = DisposeBag()
     
     override var prefersStatusBarHidden: Bool {
         return false

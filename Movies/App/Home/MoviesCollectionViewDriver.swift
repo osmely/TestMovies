@@ -13,14 +13,16 @@ import RxCocoa
 
 
 protocol MoviesCollectionProtocol : class {
-    func onMovieCellSelected()
+    func onMovieCellSelected(movie:MovieModel)
 }
 
-class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class MoviesCollectionViewDriver : NSObject {
     
     let collectionView: UICollectionView
     let disposeBag = DisposeBag()
     weak var delegate: MoviesCollectionProtocol?
+    let refreshControl: UIRefreshControl = UIRefreshControl()
+    var page = 1
     
     var viewModel:HomeViewController.ViewModel! {
         didSet{
@@ -38,17 +40,38 @@ class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout,
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.collectionView.refreshControl = self.refreshControl
+        
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     func bind() {
-        
         self.viewModel.movies.asObservable()
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { (models) in
+            .subscribe(onNext: {[weak self] (models) in
+                guard let self = self else {return}
+                if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
                 self.collectionView.reloadData()
+                
             }).disposed(by: disposeBag)
         
+        self.viewModel.page.asObservable()
+            .subscribe(onNext: {[weak self] (v) in
+                self?.page = v
+            }).disposed(by: disposeBag)
     }
+    
+    @objc func refresh() {
+        self.viewModel.get(page: 1)
+    }
+    
+    func reload(){
+        self.viewModel.get(page: page)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout, UICollectionViewDataSource -
+extension MoviesCollectionViewDriver : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -64,6 +87,10 @@ class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout,
         return self.viewModel.movies.value.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.viewModel.reloadIfNeeded(fromIndex: indexPath.row)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         cell.configureWith(movie: self.viewModel.movies.value[indexPath.row])
@@ -71,11 +98,7 @@ class MoviesCollectionViewDriver : NSObject, UICollectionViewDelegateFlowLayout,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.onMovieCellSelected()
+        self.delegate?.onMovieCellSelected(movie: self.viewModel.movies.value[indexPath.row])
     }
     
-    func reload(){
-        self.viewModel.get(page: 1)
-        
-    }
 }

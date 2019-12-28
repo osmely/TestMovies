@@ -23,10 +23,11 @@
 		FEFF395523B6AF47003585BA /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF395323B6AF47003585BA /* MovieDetailsViewController.swift */; };
 		FEFF395623B6AF47003585BA /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEFF395423B6AF47003585BA /* MovieDetailsViewController.xib */; };
 		FEFF395F23B6BA45003585BA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF395E23B6BA45003585BA /* Logger.swift */; };
-		FEFF396123B6BAF1003585BA /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF396023B6BAF1003585BA /* InternetConnection.swift */; };
 		FEFF396423B6C0FB003585BA /* NetworkRequestsManager+rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF396323B6C0FB003585BA /* NetworkRequestsManager+rx.swift */; };
 		FEFF396623B6C76B003585BA /* NetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF396523B6C76B003585BA /* NetworkingConstants.swift */; };
 		FEFF396823B6C866003585BA /* MoviesRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF396723B6C866003585BA /* MoviesRequests.swift */; };
+		FEFF396A23B6EC98003585BA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF396923B6EC98003585BA /* String+Extensions.swift */; };
+		FEFF396C23B6F237003585BA /* MovieDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFF396B23B6F237003585BA /* MovieDetailsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,10 +51,11 @@
 		FEFF395323B6AF47003585BA /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		FEFF395423B6AF47003585BA /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
 		FEFF395E23B6BA45003585BA /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		FEFF396023B6BAF1003585BA /* InternetConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
 		FEFF396323B6C0FB003585BA /* NetworkRequestsManager+rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRequestsManager+rx.swift"; sourceTree = "<group>"; };
 		FEFF396523B6C76B003585BA /* NetworkingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConstants.swift; sourceTree = "<group>"; };
 		FEFF396723B6C866003585BA /* MoviesRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRequests.swift; sourceTree = "<group>"; };
+		FEFF396923B6EC98003585BA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		FEFF396B23B6F237003585BA /* MovieDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +155,7 @@
 				FE6F5AEA23B68DC700133217 /* UIViewController+Extensions.swift */,
 				FEFF394C23B6A667003585BA /* UIView+Extensions.swift */,
 				FEFF395E23B6BA45003585BA /* Logger.swift */,
-				FEFF396023B6BAF1003585BA /* InternetConnection.swift */,
+				FEFF396923B6EC98003585BA /* String+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				FEFF394E23B6AC88003585BA /* MovieModel.swift */,
+				FEFF396B23B6F237003585BA /* MovieDetailsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,10 +323,11 @@
 				FE2A308E23B6797E00171C25 /* ViewController.swift in Sources */,
 				FE6F5AF223B690B500133217 /* MovieCollectionViewCell.swift in Sources */,
 				FEFF396623B6C76B003585BA /* NetworkingConstants.swift in Sources */,
+				FEFF396C23B6F237003585BA /* MovieDetailsModel.swift in Sources */,
 				FEFF395F23B6BA45003585BA /* Logger.swift in Sources */,
+				FEFF396A23B6EC98003585BA /* String+Extensions.swift in Sources */,
 				FEFF396823B6C866003585BA /* MoviesRequests.swift in Sources */,
 				FE2A308A23B6797E00171C25 /* AppDelegate.swift in Sources */,
-				FEFF396123B6BAF1003585BA /* InternetConnection.swift in Sources */,
 				FE6F5AE823B680BC00133217 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

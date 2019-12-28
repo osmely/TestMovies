@@ -44,8 +44,6 @@ extension EasyNetRequest {
         })
         
     }
-    
-    
 }
 
 
